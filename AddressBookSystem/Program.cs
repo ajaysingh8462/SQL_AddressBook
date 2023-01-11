@@ -12,7 +12,7 @@ namespace AddressBookSystem
         public static void Main(string[] args)
         {
             //AddressBookDataBase.CreateDatabass();
-            Console.WriteLine("Enter Option\n1.Create Table (Address Book) ");
+            Console.WriteLine("Enter Option\n1.Create Table (Address Book)\n2.Insert contact  ");
             int op = Convert.ToInt32(Console.ReadLine());
             while (true)
             {
@@ -20,6 +20,9 @@ namespace AddressBookSystem
                 {
                     case 1:
                         Table.CreateTable();
+                        break;
+                        case 2:
+                        InsertData.InsertContact();
                         break;
                 }
                 break;            
