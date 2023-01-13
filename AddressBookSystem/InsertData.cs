@@ -7,28 +7,45 @@ using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
-    public class InsertData
+    public class InsertData:Contact
     {
-        public static void InsertContact()
+        public static string connection = @"Data Source=DESKTOP-P65PD0V;Initial catalog=AddressBook;Integrated Security=true";
+        SqlConnection sqlConnection = new SqlConnection(connection);
+        public void InsertIntoTable(string FirstName, string LastName, string Address, string City, string State, int Zip, long PhoneNumber, string Email)
         {
+
+            int result = 0;
             try
             {
-                
-                SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-P65PD0V;Initial catalog=AddressBook;Integrated Security=true");
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("insert into Address_Book values('Ajay','Singh','Sector 45','gurgaon', 'haryana', 430002, 7898345625,'ajay@gmail.com')", connection);
-                SqlCommand insrt = new SqlCommand("insert into Address_Book values('Teena','Saini','sector 47','Haridwar', 'Uttrakhand', 480025, 8978545252,'Teena@gmail.com')", connection);
-                SqlCommand add = new SqlCommand("insert into Address_Book values('rahul','Singh','Sector 45','Bawal', 'haryana', 4300045, 7898345878,'Rahul23@gmail.com')", connection);
-                cmd.ExecuteNonQuery();
-                insrt.ExecuteNonQuery();
-                add.ExecuteNonQuery();
-                Console.WriteLine("Contact inserted");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+                using (sqlConnection)
+                {
+                    SqlCommand sqlCommand = new SqlCommand("spInsertintoTable", this.sqlConnection);
 
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@FirstName", FirstName);
+                    sqlCommand.Parameters.AddWithValue("@LastName",LastName);
+                    sqlCommand.Parameters.AddWithValue("@Address", Address);
+                    sqlCommand.Parameters.AddWithValue("@City", City);
+                    sqlCommand.Parameters.AddWithValue("@State", State);
+                    sqlCommand.Parameters.AddWithValue("@zip",Zip);
+                    sqlCommand.Parameters.AddWithValue("@PhoneNumber", PhoneNumber);
+                    sqlCommand.Parameters.AddWithValue("@Email", Email);
+                    sqlConnection.Open();
+                    result = sqlCommand.ExecuteNonQuery();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Updated");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not Updated");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }
