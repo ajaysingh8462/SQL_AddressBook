@@ -23,7 +23,7 @@ namespace AddressBookSystem
 
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("@FirstName", FirstName);
-                    sqlCommand.Parameters.AddWithValue("@LastName",LastName);
+                    sqlCommand.Parameters.AddWithValue("@LastName", LastName);
                     sqlCommand.Parameters.AddWithValue("@Address", Address);
                     sqlCommand.Parameters.AddWithValue("@City", City);
                     sqlCommand.Parameters.AddWithValue("@State", State);
@@ -34,7 +34,7 @@ namespace AddressBookSystem
                     result = sqlCommand.ExecuteNonQuery();
                     if (result != 0)
                     {
-                        Console.WriteLine("Updated");
+                        Console.WriteLine("Contact Inserted");
                     }
                     else
                     {

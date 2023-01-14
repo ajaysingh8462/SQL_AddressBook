@@ -13,7 +13,7 @@ namespace AddressBookSystem
         public static void Main(string[] args)
         {
             //AddressBookDataBase.CreateDatabass();
-            Console.WriteLine("Enter Option\n1.Create Table (Address Book)\n2.Insert contact\n3.Edit Contact ");
+            Console.WriteLine("Enter Option\n1.Create Table (Address Book)\n2.Insert contact\n3.Edit Contact\n4. Display contacts\n5 Delete Record ");
             int op = Convert.ToInt32(Console.ReadLine());
             while (true)
             {
@@ -45,6 +45,16 @@ namespace AddressBookSystem
                     case 3:
                         UpdateContact update =new UpdateContact();
                         update.EditContact();
+                        break;
+                        case 4:
+                        Display display= new Display();
+                        display.DisplayEmployeeDetails();
+                        break;
+                        case 5:
+                        Delete delete =new Delete();
+                        Console.WriteLine("Enter FirstName to remove from table");
+                        string Firstname = Console.ReadLine();
+                        delete.DeleteContacts(Firstname);
                         break;
                 }
                 break;            
