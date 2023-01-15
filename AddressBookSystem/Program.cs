@@ -13,7 +13,7 @@ namespace AddressBookSystem
         public static void Main(string[] args)
         {
             //AddressBookDataBase.CreateDatabass();
-            Console.WriteLine("Enter Option\n1.Create Table (Address Book)\n2.Insert contact\n3.Edit Contact\n4. Display contacts\n5 Delete Record ");
+            Console.WriteLine("Enter Option\n1.Create Table (Address Book)\n2.Insert contact\n3.Edit Contact\n4. Display contacts\n5 Delete Record\n6.Find Persons by City or State ");
             int op = Convert.ToInt32(Console.ReadLine());
             while (true)
             {
@@ -55,6 +55,25 @@ namespace AddressBookSystem
                         Console.WriteLine("Enter FirstName to remove from table");
                         string Firstname = Console.ReadLine();
                         delete.DeleteContacts(Firstname);
+                        break;
+                        case 6:
+                        Console.WriteLine("Find Persons by City or State");
+                        Console.WriteLine("1.Find Person by City\n2.Find Person by State");
+                        int check = Convert.ToInt32(Console.ReadLine());
+                        Find_Person fn = new Find_Person();
+                        switch (check)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter City To find perosn");
+                                string city = Console.ReadLine();
+                                fn.Find_Person_City(city);
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter State To find perosn");
+                                string state = Console.ReadLine();
+                                fn.Find_Person_State(state);
+                                break;
+                        }
                         break;
                 }
                 break;            
